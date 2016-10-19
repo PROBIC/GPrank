@@ -1,0 +1,35 @@
+citEntry(entry="Article",
+  header="The underlying methodology papers can be cited as:",
+  author =       "Hande Topa and \'{A}gnes J\'{o}n\'{a}s and Robert Kofler and Carolin Kosiol and Antti Honkela",
+  title =        "Gaussian process test for high-throughput sequencing time series: application to experimental evolution",
+  journal =      "Bioinformatics",
+  year =         "2015",
+  volume =       "31",
+  pages =        "1762-1770",
+  number =       "11",
+  textVersion = paste(
+    "Hande Topa, Agnes Jonas, Robert Kofler, Carolin Kosiol, Antti Honkela.",
+    "Gaussian process test for high-throughput sequencing time series: application to experimental evolution.",
+    "Bioinformatics 31(11):1762-1770, 2015."
+  )
+)
+
+citEntry(entry="Article",
+  author =       "Hande Topa and Antti Honkela",
+  title =        "Analysis of differential splicing suggests different modes of short-term splicing regulation",
+  journal =      "Bioinformatics",
+  year =         "2016",
+  volume =       "32",
+  pages =        "i147-i155",
+  number =       "12",
+  textVersion = paste(
+    "Hande Topa, Antti Honkela.",
+    "Analysis of differential splicing suggests different modes of short-term splicing regulation.",
+    "Bioinformatics 32(12):i147-i155, 2016."
+  )
+)
+
+citFooter("This free open-source software implements academic
+research by the authors and co-workers. If you use it,
+please support the project by citing the appropriate
+journal articles.")
