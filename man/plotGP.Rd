@@ -4,7 +4,8 @@
 \alias{plotGP}
 \title{Plotting fitted GP models}
 \usage{
-plotGP(model, col_item = "gray", ylimits = NULL)
+plotGP(model, col_item = "gray", ylimits = NULL, write_xticks = TRUE,
+  write_yticks = TRUE)
 }
 \arguments{
 \item{model}{GP model to be plotted.}
@@ -12,6 +13,10 @@ plotGP(model, col_item = "gray", ylimits = NULL)
 \item{col_item}{RGB color code which will be used for the color of the GP plot.}
 
 \item{ylimits}{Numeric vector which contains minimum and maximum limits for the y axis.}
+
+\item{write_xticks}{Boolean: whether to write x ticks and labels or not}
+
+\item{write_yticks}{Boolean: whether to write y ticks and labels or not}
 }
 \value{
 Creates the plot of the fitted GP model.

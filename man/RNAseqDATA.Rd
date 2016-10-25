@@ -9,7 +9,11 @@
 data(RNAseqDATA)
 }
 \description{
-Data from an RNA-seq time series experiment.
+The original data was introduced in (Honkela et al., 2015) and can be accessed
+in Gene Expression Omnibus (GEO) database (\url{www.ncbi.nlm.nih.gov/geo}) 
+with accession no. GSE62789.
+}
+\details{
 This data set contains mean and standard deviation information on the expression
 levels of 12 transcripts (which were originated from 4 genes) at 10 time points
 (0, 5, 10, 20, 40, 80, 160, 320, 640, 1280 mins) for three settings: 'gene',
@@ -23,6 +27,12 @@ data(RNAseqDATA)
 gpData=RNAseqDATA$gene
 gpData=RNAseqDATA$abstr
 gpData=RNAseqDATA$reltr
+
+}
+\references{
+Antti Honkela, Jaakko Peltonen, Hande Topa, Iryna Charapitsa, Filomena Matarese, Korbinian Grote, Hendrik G. Stunnenberg, George Reid, Neil D. Lawrence, Magnus Rattray.
+Genome-wide modeling of transcription kinetics reveals patterns of RNA production delays.
+\emph{PNAS} 112(42):13115-13120, \bold{2015}.
 }
 \keyword{datasets}
 
