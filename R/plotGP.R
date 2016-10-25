@@ -6,6 +6,8 @@
 #' @param model GP model to be plotted.
 #' @param col_item RGB color code which will be used for the color of the GP plot.
 #' @param ylimits Numeric vector which contains minimum and maximum limits for the y axis.
+#' @param write_xticks Boolean: whether to write x ticks and labels or not
+#' @param write_yticks Boolean: whether to write y ticks and labels or not
 #'
 #' @export
 #' @return Creates the plot of the fitted GP model.
@@ -28,7 +30,7 @@
 #' 
 
 plotGP <-
-function(model,col_item='gray',ylimits=NULL) {
+function(model,col_item='gray',ylimits=NULL, write_xticks=TRUE, write_yticks=TRUE) {
 	
 	x=model$X
 	y=model$y
@@ -59,7 +61,19 @@ function(model,col_item='gray',ylimits=NULL) {
 		ylimits=getYlimits(y,v)	
 	}
 
-	plot(xtest,ypredMean,type='n',xlim=c(head(x,1)-1e-14,tail(x,1)+1e-14),ylim=c(min(ylimits)-1e-14,max(ylimits)+1e-14),xlab="",ylab="",axes = FALSE,xaxt='n',yaxt='n')
+        if (write_xticks) {
+          if (write_yticks) {
+            plot(xtest,ypredMean,type='n',xlim=c(head(x,1)-1e-14,tail(x,1)+1e-14),ylim=c(min(ylimits)-1e-14,max(ylimits)+1e-14),xlab="",ylab="")
+          } else {
+            plot(xtest,ypredMean,type='n',xlim=c(head(x,1)-1e-14,tail(x,1)+1e-14),ylim=c(min(ylimits)-1e-14,max(ylimits)+1e-14),xlab="",ylab="",yaxt='n')
+          }
+        } else {
+          if (write_yticks) {
+            plot(xtest,ypredMean,type='n',xlim=c(head(x,1)-1e-14,tail(x,1)+1e-14),ylim=c(min(ylimits)-1e-14,max(ylimits)+1e-14),xlab="",ylab="",xaxt='n')
+          } else {
+            plot(xtest,ypredMean,type='n',xlim=c(head(x,1)-1e-14,tail(x,1)+1e-14),ylim=c(min(ylimits)-1e-14,max(ylimits)+1e-14),xlab="",ylab="",axes = FALSE,xaxt='n',yaxt='n')
+          }
+        }
 	polygon(c(xtest, rev(xtest)), c(upper, rev(ypredMean)), col = col_item, border = NA)
 	polygon(c(xtest, rev(xtest)), c(ypredMean, rev(lower)), col = col_item, border = NA)
 	lines(xtest,lower,lty=2,col='black')

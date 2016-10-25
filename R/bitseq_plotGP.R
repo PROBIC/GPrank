@@ -99,17 +99,22 @@ function(item, GPfits, gpData, multi=0, ylimits=NULL, x_ticks=NULL, x_label=NULL
 		params=GPfits$Model$transformed_params[which(rownames(gpData$mean) %in% item)[i],]  # transformed parameter values
 		col_i=colScale[i]		
 		model=constructModel(x,y,v,kernelType,params) 
-		suppressWarnings(par(oma = c(0, 0, 0, 0), new = TRUE))	
-		plotGP(model,col_i,ylimits)		
+		suppressWarnings(par(oma = c(0, 0, 0, 0), new = TRUE))
+                if (i == 1) {
+                  if (is.null(x_ticks)) {
+                    plotGP(model,col_i,ylimits, write_xticks=TRUE, write_yticks=TRUE)
+                  } else {
+                    plotGP(model,col_i,ylimits, write_xticks=FALSE, write_yticks=TRUE)
+                  }
+                } else {
+                  plotGP(model,col_i,ylimits, write_xticks=FALSE, write_yticks=FALSE)
+                }
 	}
 
 	yRange=seq(min(ylimits),max(ylimits),length=5)	
-	y_ticks=as.character(format(yRange,digits=3,nsmall=3))
-	if (is.null(x_ticks)) {
-		x_ticks=as.character(format(x,digits=3,nsmall=3))
-	}
-	axis(side = 1, at = c(x), labels=x_ticks)
-	axis(side=2,at=yRange,labels=y_ticks)
+	if (!is.null(x_ticks)) {
+          axis(side = 1, at = c(x), labels=x_ticks)
+        }
 	title(xlab=x_label, ylab=y_label)
 	legend("top", inset=c(0,-0.15), legend=item[indices_for_legend], col=head(colScale,l)[indices_for_legend], lwd=3, xpd=TRUE, horiz = TRUE, bty = "n")	# item names
 	legend("top", inset=c(0,-0.1), legend=paste("logBF: ",c(format(logBF[indices_for_legend],digits=3,nsmall=3))), col=head(colScale,l)[indices_for_legend], lwd=3, xpd=TRUE, horiz = TRUE, bty = "n")	# log Bayes factors
