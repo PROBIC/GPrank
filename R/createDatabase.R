@@ -43,7 +43,7 @@
 #' dbInfo=list(database_name="testdb","database_params"=dbParams,"identifiers"=identifiers)
 #' figuresPath="figures/"
 #' multi=1
-#' getDatabase(dbInfo,figuresPath,multi)
+#' createDatabase(dbInfo,figuresPath,multi)
 #'
 #' @import tigrebrowserWriter
 #' 
@@ -51,7 +51,7 @@
 #' @author Hande Topa, \email{hande.topa@@helsinki.fi}
 #' 
 
-getDatabase <-
+createDatabase <-
 function(dbInfo,figuresPath,multi=0) {
 
 	project_name=dbInfo$database_name
