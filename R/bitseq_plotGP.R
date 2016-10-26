@@ -2,9 +2,11 @@
 #'
 #' @description
 #' Function for plotting GP profiles. If the item to be plotted has 
-#' multiple items which are associated with itself, its items are
-#' can be plotted on top of each other by setting \code{multi} to 1,
-#' for better visual comparison. 
+#' multiple items which are associated with itself, its items can
+#' be plotted on top of each other by setting \code{multi} to 1,
+#' for better visual comparison. Log Bayes factors are displayed 
+#' in legends for at most three items which have the largest
+#' log Bayes factors. 
 #' 
 #' @param item Name of the item whose GP profile to be plotted.
 #' @param GPfits List structure obtained by \code{bitseq_fitGPs} which contains

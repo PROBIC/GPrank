@@ -5,7 +5,7 @@
 #' with accession no. GSE62789.
 #' 
 #' This data set contains mean and standard deviation information on the expression
-#' levels of 12 transcripts (which were originated from 4 genes) at 10 time points
+#' levels of 5 transcripts (which were originated from 2 genes) at 10 time points
 #' (0, 5, 10, 20, 40, 80, 160, 320, 640, 1280 mins) for three settings: 'gene',
 #' 'abstr' (absolute transcript), and 'reltr' (relative transcript) expression
 #' levels. In addition, the fields 'gene_mapping' and 'time_mapping' includes

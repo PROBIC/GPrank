@@ -1,0 +1,7 @@
+# example_transcriptome_file
+gene_ID	transcript_ID	transcript_length
+MGAT5	MGAT5-001	8252
+MGAT5	MGAT5-201	2421
+ARAP2	ARAP2-001	7514
+ARAP2	ARAP2-005	396
+ARAP2	ARAP2-004	631
