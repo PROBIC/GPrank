@@ -42,7 +42,8 @@ with the database as well.
 Also modify the database name accordingly
 in "tigreBrowser.cfg".
 For details of using tigreBrowser, please refer to
-\url{https://github.com/PROBIC/tigreBrowser}.
+\url{https://github.com/PROBIC/tigreBrowser} and. 
+\url{https://github.com/PROBIC/tigreBrowserWriter}.
 }
 \examples{
 BF=c(3,10,2)

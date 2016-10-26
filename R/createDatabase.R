@@ -11,8 +11,9 @@
 #' Also modify the database name accordingly
 #' in "tigreBrowser.cfg".
 #' For details of using tigreBrowser, please refer to
-#' \url{https://github.com/PROBIC/tigreBrowser}. 
-#' 
+#' \url{https://github.com/PROBIC/tigreBrowser} and. 
+#' \url{https://github.com/PROBIC/tigreBrowserWriter}.
+#'
 #' @param dbInfo List which contains the required information
 #' of the items that will be included in the database.
 #' Three arguments must be specified in the \code{dbInfo}:
@@ -45,7 +46,7 @@
 #' multi=1
 #' createDatabase(dbInfo,figuresPath,multi)
 #'
-#' @import tigrebrowserWriter
+#' @import tigreBrowserWriter
 #' 
 #' @keywords database
 #' @author Hande Topa, \email{hande.topa@@helsinki.fi}
