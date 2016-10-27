@@ -1,6 +1,6 @@
 Package: GPrank
 Title: Gaussian Process Ranking of Multiple Time Series
-Version: 0.1
+Version: 0.1.1
 Date: 2016-10-26
 Author: Hande Topa <hande.topa@helsinki.fi>,
 	 Antti Honkela <antti.honkela@helsinki.fi>
@@ -8,25 +8,28 @@ Maintainer: Hande Topa <hande.topa@helsinki.fi>
 Depends: R (>= 2.8.0)
 Imports: gptk, matrixStats, tigreBrowserWriter, RColorBrewer
 LazyData: true
-Description: The GPrank package implements a Gaussian-process-based
-    ranking method which can be used to rank multiple time series
-    according to their temporal activity levels. An example is the
-    case when expression levels of all genes are measured over time
-    and the main concern is to identify the most active genes,
-    i.e. genes which show significant non-random variation in their
-    expression levels. GPrank computes Bayes factors for each time
-    series by comparing the marginal likelihoods under time-dependent
-    and time-independent Gaussian process models. Under the assumption
-    of smooth temporal behaviour, time dependency is modelled with rbf
-    kernel, and noise is assumed to be white. GPrank incorporates
-    uncertainty levels of the observations into the GP models, which
-    makes ranking more robust against internal and external factors
-    varying from time to time due to the nature of the experiment.
-    GPrank also creates an SQLite database for displaying the GP
-    profiles on a browser for visualisation, filtering or ranking
-    purposes.
+Description: Implements a Gaussian-process-based ranking method
+    which can be used to rank multiple time series according to
+    their temporal activity levels. An example is the case when
+    expression levels of all genes are measured over a time course
+    and the main concern is to identify the most active genes, i.e.
+    genes which show significant non-random variation in their
+    expression levels. This is achieved by computing Bayes factors
+    for each time series by comparing the marginal likelihoods under
+    time-dependent and time-independent Gaussian process models.Under
+    the assumption of smooth temporal behaviour, time dependency is
+    captured with radial basis function kernel, and noise is assumed
+    to be white. Furthermore, additional variance information from
+    pre-processing of the observations are incorporated into the
+    GP models, which makes ranking more robust against internal and
+    external factors varying from time to time due to the nature of
+    the experiment. In addition, an SQLite database file can be
+    created for displaying the GP profiles on a browser for
+    visualisation, filtering or ranking purposes.
 License: MIT + file LICENSE
 URL: https://github.com/PROBIC/GPrank
 BugReports: https://github.com/PROBIC/GPrank/issues
 RoxygenNote: 5.0.1
 NeedsCompilation: no
+
+
