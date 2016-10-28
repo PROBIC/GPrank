@@ -93,7 +93,7 @@ function(item, GPfits, gpData, multi=0, ylimits=NULL, x_ticks=NULL, x_label=NULL
 	} else {
 		bitseq_setPlot(plotName)
 	}
-	par(oma = c(1, 1, 6, 1), mar=c(2, 2, 3, 0)+0.4, mgp=c(1.5, 0.5, 0), xpd=TRUE)
+	par(oma = c(1, 1, 6, 1), mar=c(2, 2, 3, 0)+0.6, mgp=c(1.5, 0.5, 0), xpd=TRUE)
 
 	for (i in seq(1:l)) {
 		y=as.matrix(Y[i,])
@@ -118,8 +118,8 @@ function(item, GPfits, gpData, multi=0, ylimits=NULL, x_ticks=NULL, x_label=NULL
           axis(side = 1, at = c(x), labels=x_ticks)
         }
 	title(xlab=x_label, ylab=y_label)
-	legend("top", inset=c(0,-0.15), legend=item[indices_for_legend], col=head(colScale,l)[indices_for_legend], lwd=3, xpd=TRUE, horiz = TRUE, bty = "n")	# item names
-	legend("top", inset=c(0,-0.1), legend=paste("logBF: ",c(format(logBF[indices_for_legend],digits=3,nsmall=3))), col=head(colScale,l)[indices_for_legend], lwd=3, xpd=TRUE, horiz = TRUE, bty = "n")	# log Bayes factors
+	legend("top", inset=c(0,-0.13), legend=item[indices_for_legend], col=head(colScale,l)[indices_for_legend], lwd=3, xpd=TRUE, horiz = TRUE, bty = "n")	# item names
+	legend("top", inset=c(0,-0.08), legend=paste("logBF: ",c(format(logBF[indices_for_legend],digits=3,nsmall=3))), col=head(colScale,l)[indices_for_legend], lwd=3, xpd=TRUE, horiz = TRUE, bty = "n")	# log Bayes factors
 	box()
 	if (!missing(plotName) | !is.null(plotName)) {
 		dev.off()

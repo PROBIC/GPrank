@@ -23,12 +23,10 @@
 bitseq_setPlot <-
 function(plotName) {
 
-	FONTSIZE <- 10
 	if (grepl(".pdf",plotName)) {
-		pdf(file=plotName, width=86/25.4, height=70/25.4)
-		par(ps=FONTSIZE, cex=1)
+		pdf(file=plotName)
 	} else if (grepl(".png",plotName)) {
-		png(filename=plotName, width=86/25.4, height=70/25.4, units="in", res=300, pointsize=10)
+		png(filename=plotName)
 	} else {
 		stop(sprintf("Please specify the file extension as pdf or png in the file name of the plot."))	
 	}
