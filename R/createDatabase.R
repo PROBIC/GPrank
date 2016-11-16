@@ -29,7 +29,8 @@
 #' If there is only a single figure to display, please name it with the corresponding identifier
 #' name. For example, for identifier "geneA", name the figure "geneA.png".
 #' }
-#' @param figuresPath Directory in which the figures are placed in png format.
+#' @param figuresPath Directory in which the figures are placed in png format. Please specify the 
+#' full path to the directory.
 #' @param multi Logical value indicating whether items have multiple (1) or single (0) figure(s).
 #' Default value is set to 0.
 #'
@@ -42,7 +43,7 @@
 #' dbParams=list("BF"=BF,"Fold change"=FoldChange)
 #' identifiers=c("geneA","geneB","geneC")
 #' dbInfo=list(database_name="testdb","database_params"=dbParams,"identifiers"=identifiers)
-#' figuresPath="figures/"
+#' figuresPath="/full/path/to/figure/"  
 #' multi=1
 #' createDatabase(dbInfo,figuresPath,multi)
 #'
@@ -85,7 +86,7 @@ function(dbInfo,figuresPath,multi=0) {
 		fig_extensions=unique(sapply(strsplit(figs,split="\\_"), tail, n = 1))
 		n_fig=length(fig_extensions)
 		for (f in 1:n_fig) {
-			fig_link=paste(figuresPath,"${probe_name}_",fig_extensions[f],sep="")
+			fig_link=paste("file://",figuresPath,"${probe_name}_",fig_extensions[f],sep="")
 			db = insertFigures(db, param_id, "_", fig_link)	
 		}
 	}

@@ -23,7 +23,8 @@ If there is only a single figure to display, please name it with the correspondi
 name. For example, for identifier "geneA", name the figure "geneA.png".
 }}
 
-\item{figuresPath}{Directory in which the figures are placed in png format.}
+\item{figuresPath}{Directory in which the figures are placed in png format. Please specify the 
+full path to the directory.}
 
 \item{multi}{Logical value indicating whether items have multiple (1) or single (0) figure(s).
 Default value is set to 0.}
@@ -51,7 +52,7 @@ FoldChange=c(0.5,3,5)
 dbParams=list("BF"=BF,"Fold change"=FoldChange)
 identifiers=c("geneA","geneB","geneC")
 dbInfo=list(database_name="testdb","database_params"=dbParams,"identifiers"=identifiers)
-figuresPath="figures/"
+figuresPath="/full/path/to/figure/"  
 multi=1
 createDatabase(dbInfo,figuresPath,multi)
 
