@@ -79,15 +79,27 @@ function(dbInfo,figuresPath,multi=0) {
 
 	# Insert figures:
 	if (multi==0) {
-		fig_link=paste(figuresPath,"${probe_name}.png",sep="")
-		db = insertFigures(db, param_id, "_", fig_link)
+		#fig_link=paste(figuresPath,"${probe_name}.png",sep="")
+		#db = insertFigures(db, param_id, "_", fig_link)
+		figs <- list.files(path=figuresPath)
+		fig_identifiers=unique(sapply(strsplit(figs,split="\\."), head, n = 1))
+		figs=paste(figuresPath,figs,sep="")
+		names(figs)=fig_identifiers
+		figs=as.list(figs)
+		db = insertFigureData(db, param_id, "_", figs)
 	} else {
 		figs <- list.files(path=figuresPath, pattern = "\\.png$")
 		fig_extensions=unique(sapply(strsplit(figs,split="\\_"), tail, n = 1))
 		n_fig=length(fig_extensions)
 		for (f in 1:n_fig) {
-			fig_link=paste("file://",figuresPath,"${probe_name}_",fig_extensions[f],sep="")
-			db = insertFigures(db, param_id, "_", fig_link)	
+			#fig_link=paste("file://",figuresPath,"${probe_name}_",fig_extensions[f],sep="")
+			#db = insertFigures(db, param_id, "_", fig_link)
+			figs <- list.files(path=figuresPath, pattern = fig_extensions[f])
+			fig_identifiers=unique(sapply(strsplit(figs,split="\\_"), head, n = 1))
+			figs=paste(figuresPath,figs,sep="")
+			names(figs)=fig_identifiers
+			figs=as.list(figs)
+			db = insertFigureData(db, param_id, "_", figs,name=sapply(strsplit(fig_extensions[[f]],split="\\."), head, n = 1))	
 		}
 	}
 
