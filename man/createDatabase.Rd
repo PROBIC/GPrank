@@ -37,25 +37,10 @@ Function for building an SQLite database for displaying
 GP profiles of the selected items on a browser,
 enabling to rank them according to their Bayes factors 
 and other provided parameters.
-Please place all figures in a subdirectory and also remember
-to place tigreBrowser configuration files in the same folder
-with the database as well.
-Also modify the database name accordingly
-in "tigreBrowser.cfg".
+Please place all figures in one directory.
 For details of using tigreBrowser, please refer to
 \url{https://github.com/PROBIC/tigreBrowser} and. 
 \url{https://github.com/PROBIC/tigreBrowserWriter}.
-}
-\examples{
-BF=c(3,10,2)
-FoldChange=c(0.5,3,5)
-dbParams=list("BF"=BF,"Fold change"=FoldChange)
-identifiers=c("geneA","geneB","geneC")
-dbInfo=list(database_name="testdb","database_params"=dbParams,"identifiers"=identifiers)
-figuresPath="/full/path/to/figure/"  
-multi=1
-createDatabase(dbInfo,figuresPath,multi)
-
 }
 \author{
 Hande Topa, \email{hande.topa@helsinki.fi}

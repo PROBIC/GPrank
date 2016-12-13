@@ -5,11 +5,7 @@
 #' GP profiles of the selected items on a browser,
 #' enabling to rank them according to their Bayes factors 
 #' and other provided parameters.
-#' Please place all figures in a subdirectory and also remember
-#' to place tigreBrowser configuration files in the same folder
-#' with the database as well.
-#' Also modify the database name accordingly
-#' in "tigreBrowser.cfg".
+#' Please place all figures in one directory.
 #' For details of using tigreBrowser, please refer to
 #' \url{https://github.com/PROBIC/tigreBrowser} and. 
 #' \url{https://github.com/PROBIC/tigreBrowserWriter}.
@@ -37,15 +33,15 @@
 #' @export
 #' @return Generates an SQLite database named "$database_name.sqlite".
 #'
-#' @examples
-#' BF=c(3,10,2)
-#' FoldChange=c(0.5,3,5)
-#' dbParams=list("BF"=BF,"Fold change"=FoldChange)
-#' identifiers=c("geneA","geneB","geneC")
-#' dbInfo=list(database_name="testdb","database_params"=dbParams,"identifiers"=identifiers)
-#' figuresPath="/full/path/to/figure/"  
-#' multi=1
-#' createDatabase(dbInfo,figuresPath,multi)
+# @examples
+# BF=c(3,10,2)
+# FoldChange=c(0.5,3,5)
+# dbParams=list("BF"=BF,"Fold change"=FoldChange)
+# identifiers=c("geneA","geneB","geneC")
+# dbInfo=list(database_name="testdb","database_params"=dbParams,"identifiers"=identifiers)
+# figuresPath="/full/path/to/figure/" 
+# multi=1
+# createDatabase(dbInfo,figuresPath,multi)
 #'
 #' @import tigreBrowserWriter
 #' 
@@ -82,24 +78,32 @@ function(dbInfo,figuresPath,multi=0) {
 		#fig_link=paste(figuresPath,"${probe_name}.png",sep="")
 		#db = insertFigures(db, param_id, "_", fig_link)
 		figs <- list.files(path=figuresPath)
-		fig_identifiers=unique(sapply(strsplit(figs,split="\\."), head, n = 1))
-		figs=paste(figuresPath,figs,sep="")
-		names(figs)=fig_identifiers
-		figs=as.list(figs)
-		db = insertFigureData(db, param_id, "_", figs)
-	} else {
-		figs <- list.files(path=figuresPath, pattern = "\\.png$")
-		fig_extensions=unique(sapply(strsplit(figs,split="\\_"), tail, n = 1))
-		n_fig=length(fig_extensions)
-		for (f in 1:n_fig) {
-			#fig_link=paste("file://",figuresPath,"${probe_name}_",fig_extensions[f],sep="")
-			#db = insertFigures(db, param_id, "_", fig_link)
-			figs <- list.files(path=figuresPath, pattern = fig_extensions[f])
-			fig_identifiers=unique(sapply(strsplit(figs,split="\\_"), head, n = 1))
+		if (length(figs)<1) {
+			stop(sprintf("No figures are found in the specified figures path..."))	
+		} else {
+			fig_identifiers=unique(sapply(strsplit(figs,split="\\."), head, n = 1))
 			figs=paste(figuresPath,figs,sep="")
 			names(figs)=fig_identifiers
 			figs=as.list(figs)
-			db = insertFigureData(db, param_id, "_", figs,name=sapply(strsplit(fig_extensions[[f]],split="\\."), head, n = 1))	
+			db = insertFigureData(db, param_id, "_", figs)	
+		}
+	} else {
+		figs <- list.files(path=figuresPath, pattern = "\\.png$")
+		if (length(figs)<1) {
+			stop(sprintf("No figures are found in the specified figures path..."))		
+		} else {
+			fig_extensions=unique(sapply(strsplit(figs,split="\\_"), tail, n = 1))
+			n_fig=length(fig_extensions)
+			for (f in 1:n_fig) {
+				#fig_link=paste("file://",figuresPath,"${probe_name}_",fig_extensions[f],sep="")
+				#db = insertFigures(db, param_id, "_", fig_link)
+				figs <- list.files(path=figuresPath, pattern = fig_extensions[f])
+				fig_identifiers=unique(sapply(strsplit(figs,split="\\_"), head, n = 1))
+				figs=paste(figuresPath,figs,sep="")
+				names(figs)=fig_identifiers
+				figs=as.list(figs)
+				db = insertFigureData(db, param_id, "_", figs,name=sapply(strsplit(fig_extensions[[f]],split="\\."), head, n = 1))	
+			}
 		}
 	}
 

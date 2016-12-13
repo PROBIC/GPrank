@@ -132,11 +132,8 @@ database which can be used to view the results in the web browser with
 the help of \Rpackage{tigreBrowser} package~\citep{Honkela2011}.
 \Rpackage{tigreBrowser} can display the selected GP profiles on a web
 browser enabling to rank them according to provided parameters, such
-as Bayes factors and fold changes. In order to view database in the
-browser, please remember to place other required tigreBrowser files in
-the same folder with the database as well. Also modify the database
-name accordingly in ``tigreBrowser.cfg''. For more information please
-see: \url{https://github.com/PROBIC/tigreBrowser}.
+as Bayes factors and fold changes. For more information please see:
+\url{https://github.com/PROBIC/tigreBrowser}.
 
 <<eval=TRUE>>=
 BF=c(3,10,2) # Bayes factors
@@ -149,7 +146,7 @@ figuresPath="figures/" # directory where the figures are saved
 multi=1 # multiple figures will be displayed for each item
 createDatabase(dbInfo,figuresPath,multi)
 @
-Note: Please place all figures in a subdirectory and specify its path in \Robject{figuresPath}, name the figures starting with the name of their corresponding identifiers. If there are multiple figures to be displayed for each item, add the specific extension after an underscore and set \Robject{multi} to TRUE. For example: ``geneA\_gene.png'', ``geneA\_abstr.png'', ``geneA\_reltr.png''. If there is only a single figure for each item, name it with its identifier. For example: ``geneA.png''. 
+Note: Please place all figures in a directory and specify its path in \Robject{figuresPath}, name the figures starting with the name of their corresponding identifiers. If there are multiple figures to be displayed for each item, add the specific extension after an underscore and set \Robject{multi} to TRUE. For example: ``geneA\_gene.png'', ``geneA\_abstr.png'', ``geneA\_reltr.png''. If there is only a single figure for each item, name it with its identifier. For example: ``geneA.png''. 
 
 \section{Applications}
 \subsection{RNA-seq transcript expression analysis using BitSeq}
