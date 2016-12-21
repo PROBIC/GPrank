@@ -72,7 +72,7 @@ function(gpData, fileName_logBF=NULL, fileName_ModelParams=NULL, fileName_NullMo
 		}
 
 		if (((range(y)[2]-range(y)[1])!=0) & all((is.na(y))!=1)) {
-			rslt=gpTest(x,y,v,nullModelKernelTypes,ModelKernelTypes)
+			rslt=apply_gpTest(x,y,v,nullModelKernelTypes,ModelKernelTypes)
 			logBayesFactors[i]=rslt$logBF
 
 			nullModel$logLik[i,]=c(gpLogLikelihood(rslt$nullModel))

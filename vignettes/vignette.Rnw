@@ -91,9 +91,9 @@ model=constructModel(t,y,v,kernelTypes)
 Please make sure that the three vectors have the same length with each other. If the data is replicated, please remember to adjust the input vector accordingly. For example, if there are two replicates observed at $n$ time points from time $t_1$ to $t_n$, vector $t$ must be defined as: $t=[t_1, t_1, t_2, t_2, \ldots, t_n, t_n]$.
 
 \subsection{Fitting the models}
-\Rfunction{gpTest} function takes $t$, $y$, and $v$ vectors as input arguments and fits two alternative GP models to the data, and computes the log Bayes factors: 
+\Rfunction{apply\_gpTest} function takes $t$, $y$, and $v$ vectors as input arguments and fits two alternative GP models to the data, and computes the log Bayes factors: 
 <<>>=
-test_result=gpTest(t,y,v,
+test_result=apply_gpTest(t,y,v,
 nullModelKernelTypes=c("white","fixedvariance"),
 modelKernelTypes=c("rbf","white","fixedvariance"))
 null_model=test_result$nullModel
@@ -435,9 +435,9 @@ y=bbgp$posteriorMean
 v=(bbgp$posteriorStd)^2
 @
 
-Then, we can perform our GP-based test with \Rfunction{gpTest} function:
+Then, we can perform our GP-based test with \Rfunction{apply\_gpTest} function:
 <<>>=
-snp_gpTest=gpTest(t,y,v)
+snp_gpTest=apply_gpTest(t,y,v)
 @
 
 \subsubsection{Visualizing the models}

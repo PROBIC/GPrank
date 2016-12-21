@@ -31,7 +31,7 @@ model=constructModel(t,y,v,kernelTypes)
 ###################################################
 ### code chunk number 5: vignette.Rnw:95-101
 ###################################################
-test_result=gpTest(t,y,v,
+test_result=apply_gpTest(t,y,v,
 nullModelKernelTypes=c("white","fixedvariance"),
 modelKernelTypes=c("rbf","white","fixedvariance"))
 null_model=test_result$nullModel
@@ -227,7 +227,7 @@ v=(bbgp$posteriorStd)^2
 ###################################################
 ### code chunk number 23: vignette.Rnw:439-440
 ###################################################
-snp_gpTest=gpTest(t,y,v)
+snp_gpTest=apply_gpTest(t,y,v)
 
 
 ###################################################

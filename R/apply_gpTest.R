@@ -38,7 +38,7 @@
 #' v=as.matrix(runif(10,0,0.5))
 #' nullModelKernelTypes=c("white","fixedvariance")
 #' modelKernelTypes=c("rbf","white","fixedvariance")
-#' test_result=gpTest(x,y,v,nullModelKernelTypes,modelKernelTypes,y_fitted=TRUE)
+#' test_result=apply_gpTest(x,y,v,nullModelKernelTypes,modelKernelTypes,y_fitted=TRUE)
 #' null_model=test_result$nullModel
 #' model=test_result$model
 #' logBF=test_result$logBF
@@ -48,7 +48,7 @@
 #' @author Hande Topa, \email{hande.topa@@helsinki.fi}
 #' 
 
-gpTest <-
+apply_gpTest <-
 function(x,y,v,nullModelKernelTypes=c("white","fixedvariance"),modelKernelTypes=c("rbf","white","fixedvariance"),y_fitted=FALSE) {
 
 	x=as.matrix(x)
