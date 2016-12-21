@@ -130,23 +130,30 @@ Once we have had all the results ready, and saved the figures in png
 format, we can use \Robject{createDatabase} function to create a
 database which can be used to view the results in the web browser with
 the help of \Rpackage{tigreBrowser} package~\citep{Honkela2011}.
-\Rpackage{tigreBrowser} can display the selected GP profiles on a web
-browser enabling to rank them according to provided parameters, such
-as Bayes factors and fold changes. For more information please see:
-\url{https://github.com/PROBIC/tigreBrowser}.
+\Rpackage{tigreBrowser} can be used to display the GP profiles
+on a browser and to filter them according to provided parameters such
+as Bayes factors. \Rpackage{tigreBrowser} is available on
+\url{https://github.com/PROBIC/tigreBrowser} and can be installed with the 
+command: \textit{python setup.py install --user}.
 
+Following is a simplified example to create a database containing the provided
+parameters (Bayes factors and fold changes)
+and the figures for the genes geneA and geneB:
 <<eval=TRUE>>=
-BF=c(3,10,2) # Bayes factors
-FoldChange=c(0.5,3,5) # Fold changes
+BF=c(3,5) # Bayes factors
+FoldChange=c(1.2,0.8) # Fold changes
 dbParams=list("BF"=BF,"Fold change"=FoldChange)
-identifiers=c("geneA","geneB","geneC")
+identifiers=c("geneA","geneB")
 dbInfo=list(database_name="testdb","database_params"=dbParams,
 "identifiers"=identifiers)
-figuresPath="figures/" # directory where the figures are saved
-multi=1 # multiple figures will be displayed for each item
-createDatabase(dbInfo,figuresPath,multi)
+figures=c("figures/geneA_GP.png","figures/geneB_GP.png")
+createDatabase(dbInfo,figures)
 @
-Note: Please place all figures in a directory and specify its path in \Robject{figuresPath}, name the figures starting with the name of their corresponding identifiers. If there are multiple figures to be displayed for each item, add the specific extension after an underscore and set \Robject{multi} to TRUE. For example: ``geneA\_gene.png'', ``geneA\_abstr.png'', ``geneA\_reltr.png''. If there is only a single figure for each item, name it with its identifier. For example: ``geneA.png''. 
+Note: Please name the figures starting with their corresponding identifiers followed by an underscore
+and the type of the figure. Specifying the type of the figures allows to display multiple figures for each item.
+
+Once the database is created, it can be viewed with the command: \newline
+\textit{python tigreServer.py -d database\_name.sqlite}.
 
 \section{Applications}
 \subsection{RNA-seq transcript expression analysis using BitSeq}
@@ -324,6 +331,74 @@ x_ticks, x_label, y_label)
 \caption{Fitted GP model for the relative transcript expression levels}
 \label{fig:bitseq_reltr}
 \end{figure}
+
+%<<eval=TRUE, fig=FALSE, echo=FALSE>>=
+%multi=0 # single GP plot in the figure
+%ylimits=NULL
+%x_ticks=NULL
+%x_label="log(5 + t/min)"
+%y_label="Expression level (log-rpkm)"
+%bitseq_plotGP("ARAP2", gene_GP_models, gene_gpData, multi, ylimits,
+%x_ticks, x_label, y_label, plotName="ARAP2_gene.png")
+%@
+%<<eval=TRUE, fig=FALSE, echo=FALSE>>=
+%bitseq_plotGP("MGAT5", gene_GP_models, gene_gpData, multi, ylimits,
+%x_ticks, x_label, y_label, plotName="MGAT5_gene.png")
+%@
+%<<eval=TRUE, fig=FALSE, echo=FALSE>>=
+%multi=1
+%ylimits=NULL
+%x_ticks=NULL
+%x_label="log(5 + t/min)"
+%y_label="Expression level (log-rpkm)"
+%bitseq_plotGP("ARAP2", abstr_GP_models, abstr_gpData, multi, ylimits,
+%x_ticks, x_label, y_label, plotName="ARAP2_abstr.png")
+%@
+%<<eval=TRUE, fig=FALSE, echo=FALSE>>=
+%bitseq_plotGP("MGAT5", abstr_GP_models, abstr_gpData, multi, ylimits,
+%x_ticks, x_label, y_label, plotName="MGAT5_abstr.png")
+%@
+%<<eval=TRUE, fig=FALSE, echo=FALSE>>=
+%multi=1
+%ylimits=c(0,1) # ratio range between 0 and 1
+%x_ticks=NULL
+%x_label="log(5 + t/min)"
+%y_label="Relative expression level"
+%bitseq_plotGP("ARAP2", reltr_GP_models, reltr_gpData, multi, ylimits,
+%x_ticks, x_label, y_label, plotName="ARAP2_reltr.png")
+%@
+%<<eval=TRUE, fig=FALSE, echo=FALSE>>=
+%bitseq_plotGP("MGAT5", reltr_GP_models, reltr_gpData, multi, ylimits,
+%x_ticks, x_label, y_label, plotName="MGAT5_reltr.png")
+%@
+
+%\subsubsection{Building SQLite database}
+%Assuming we have saved all the figures for overall gene, absolute transcript and relative transcript expression levels,
+%we can now create a database to display the GP profiles and to rank the genes according to the parameters we provide. 
+%Let our parameters be the log Bayes factors of the genes and the maximum of the log Bayes factors of the transcripts of a gene.
+%Then we can create the database with the following commands
+%<<eval=FALSE>>=
+%logBF_gene=gene_GP_models$logBayesFactors
+%max_logBF_MGAT5=max(abstr_GP_models$
+%logBayesFactors[as.matrix(which(abstr_gpData$
+%gene_mapping$gene_ID %in% "MGAT5"))])
+%max_logBF_ARAP2=max(abstr_GP_models$logBayesFactors[as.matrix(which(abstr_gpData$gene_mapping$gene_ID %in% "ARAP2"))])
+%max_logBF_abstr=c(max_logBF_MGAT5,max_logBF_ARAP2)
+%max_logBF_MGAT5=max(reltr_GP_models$logBayesFactors[as.matrix(which(reltr_gpData$gene_mapping$gene_ID %in% "MGAT5"))])
+%max_logBF_ARAP2=max(reltr_GP_models$logBayesFactors[as.matrix(which(reltr_gpData$gene_mapping$gene_ID %in% "ARAP2"))])
+%max_logBF_reltr=c(max_logBF_MGAT5,max_logBF_ARAP2)
+%BF=c(3,5) # Bayes factors
+%FoldChange=c(0.5,2) # Fold changes
+%dbParams=list("logBF_gene"=logBF_gene,"max_logBF_abstr"=max_logBF_abstr,"max_logBF_reltr"=max_logBF_reltr)
+%identifiers=c("MGAT5","ARAP2")
+%dbInfo=list(database_name="bitseqdb","database_params"=dbParams,
+%"identifiers"=identifiers)
+%#figuresPath="figures/" # directory where the figures are saved
+%#figs=list.files(path=figuresPath, pattern = "\\.png$")
+%#figs=paste(figuresPath,figs,sep="")
+%figs=c("MGAT5_gene.png","MGAT5_abstr.png","MGAT5_reltr.png","ARAP2_gene.png","ARAP2_abstr.png","ARAP2_reltr.png")
+%createDatabase(dbInfo,figs)
+%@
 
 \subsection{Quantitative analysis of population sequencing data}
 In~\citep{Topa2015}, we developed a GP-based method BBGP --- beta

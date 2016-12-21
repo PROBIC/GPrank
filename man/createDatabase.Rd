@@ -4,7 +4,7 @@
 \alias{createDatabase}
 \title{Building SQLite database}
 \usage{
-createDatabase(dbInfo, figuresPath, multi = 0)
+createDatabase(dbInfo, figs)
 }
 \arguments{
 \item{dbInfo}{List which contains the required information
@@ -14,20 +14,13 @@ Three arguments must be specified in the \code{dbInfo}:
 \item \code{database_name}: Name of the database.
 \item \code{database_params}: List of parameters which will be included in the database.
 \item \code{identifiers}: Identifiers for the items which will be displayed on the browser.
-These identifiers should appear in the begining of the corresponding figure names.
-If multiple figures will be displayed for each item, they should be separated with
-specific names added after identifier name followed by underscore. 
+These identifiers should appear in the begining of the corresponding figure names, followed by 
+an underscore and the type of the plot.
 For example, for identifier "geneA", multiple figures may be named as 
 "geneA_gene.png", "geneA_abstr.png", and "geneA_reltr.png".
-If there is only a single figure to display, please name it with the corresponding identifier
-name. For example, for identifier "geneA", name the figure "geneA.png".
 }}
 
-\item{figuresPath}{Directory in which the figures are placed in png format. Please specify the 
-full path to the directory.}
-
-\item{multi}{Logical value indicating whether items have multiple (1) or single (0) figure(s).
-Default value is set to 0.}
+\item{figs}{Character vector containing the figure names.}
 }
 \value{
 Generates an SQLite database named "$database_name.sqlite".
@@ -37,10 +30,26 @@ Function for building an SQLite database for displaying
 GP profiles of the selected items on a browser,
 enabling to rank them according to their Bayes factors 
 and other provided parameters.
-Please place all figures in one directory.
 For details of using tigreBrowser, please refer to
 \url{https://github.com/PROBIC/tigreBrowser} and. 
 \url{https://github.com/PROBIC/tigreBrowserWriter}.
+}
+\examples{
+BF=c(3,10,2)
+FoldChange=c(0.5,3,5)
+dbParams=list("BF"=BF,"Fold change"=FoldChange)
+identifiers=c("geneA","geneB","geneC")
+dbInfo=list(database_name="testdb","database_params"=dbParams,"identifiers"=identifiers)
+figs=c("geneA_gene.png","geneA_abstr.png","geneA_reltr.png","geneB_gene.png",
+"geneB_abstr.png","geneB_reltr.png","geneC_gene.png","geneC_abstr.png","geneC_reltr.png")
+for (i in seq(1,9)) {
+	examplefig=figs[i] 
+     png(examplefig)
+     plot(c(0, 1), c(0, 1))
+     dev.off()
+}
+createDatabase(dbInfo,figs)
+
 }
 \author{
 Hande Topa, \email{hande.topa@helsinki.fi}
