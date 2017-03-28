@@ -1,6 +1,6 @@
 Package: GPrank
 Title: Gaussian Process Ranking of Multiple Time Series
-Version: 0.1.2
+Version: 0.1.3
 Date: 2016-12-21
 Authors@R: c(person("Hande", "Topa", role = c("aut", "cre"),
                      email = "hande.topa@helsinki.fi"),
