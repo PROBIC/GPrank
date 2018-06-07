@@ -32,7 +32,8 @@
 #' v=list(as.matrix(runif(10,0,0.2)), as.matrix(runif(10,0,0.2)))
 #' kernelTypes=c("rbf","white","fixedvariance")
 #' model2=constructTwoSampleModel(x,y,v,kernelTypes)
-#' model1=constructModel(rbind(x[[1]], x[[2]]), rbind(y[[1]], y[[2]]), rbind(v[[1]], v[[2]]), kernelTypes)
+#' model1=constructModel(rbind(x[[1]], x[[2]]), rbind(y[[1]],
+#' + y[[2]]), rbind(v[[1]], v[[2]]), kernelTypes)
 #'
 #' @keywords model fixedvariance
 #' @author Hande Topa, \email{hande.topa@@helsinki.fi}; Antti Honkela, \email{antti.honkela@@helsinki.fi}

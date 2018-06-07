@@ -35,4 +35,3 @@ Hande Topa, \email{hande.topa@helsinki.fi}
 }
 \keyword{initial}
 \keyword{parameter}
-

@@ -36,7 +36,7 @@ function(model,col_item='gray',ylimits=NULL, write_xticks=TRUE, write_yticks=TRU
 	y=model$y
 	K = model$K_uu
 	invK = model$invK_uu
-	xtest = matrix(seq(head(x,1)-1e-14, tail(x,1)+1e-14, length = 100), ncol = 1)
+	xtest = matrix(seq(c(head(x,1))-1e-14, c(tail(x,1))+1e-14, length = 100), ncol = 1)
 	xtest=rbind(xtest,x)
 	xtest=sort(xtest)
 	Kx = kernCompute(model$kern, x, xtest)

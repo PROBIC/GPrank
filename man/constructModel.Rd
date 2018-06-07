@@ -50,4 +50,3 @@ Hande Topa, \email{hande.topa@helsinki.fi}
 }
 \keyword{fixedvariance}
 \keyword{model}
-

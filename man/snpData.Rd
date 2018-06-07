@@ -18,4 +18,3 @@ counts=snpData$counts
 seq_depth=snpData$seq_depth
 }
 \keyword{datasets}
-

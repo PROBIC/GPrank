@@ -32,4 +32,3 @@ params=getModelKernParams(model)
 Hande Topa, \email{hande.topa@helsinki.fi}
 }
 \keyword{parameter}
-

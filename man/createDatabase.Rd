@@ -55,4 +55,3 @@ createDatabase(dbInfo,figs)
 Hande Topa, \email{hande.topa@helsinki.fi}
 }
 \keyword{database}
-

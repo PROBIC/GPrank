@@ -47,4 +47,3 @@ v=bbgp$posteriorStd^2 # posterior variances
 Hande Topa, \email{hande.topa@helsinki.fi}
 }
 \keyword{bbgp}
-

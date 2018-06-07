@@ -39,4 +39,3 @@ plotGP(model,col_item,ylimits)
 Hande Topa, \email{hande.topa@helsinki.fi}
 }
 \keyword{plot}
-

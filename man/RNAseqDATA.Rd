@@ -35,4 +35,3 @@ Genome-wide modeling of transcription kinetics reveals patterns of RNA productio
 \emph{PNAS} 112(42):13115-13120, \bold{2015}.
 }
 \keyword{datasets}
-

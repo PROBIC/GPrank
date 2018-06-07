@@ -33,4 +33,3 @@ Hande Topa, \email{hande.topa@helsinki.fi}
 \keyword{deviation}
 \keyword{mean}
 \keyword{standard}
-

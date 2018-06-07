@@ -88,6 +88,6 @@ function(dbInfo,figs) {
 		}
 	}
 
-	db = closeDb(db)
+  closeDb(db)
 	Sys.chmod(db_name, mode = "444")
 }

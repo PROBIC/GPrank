@@ -36,11 +36,10 @@ gpData=RNAseqDATA$reltr
 GPfits=bitseq_fitGPs(gpData)
 
 }
-\author{
-Hande Topa, \email{hande.topa@helsinki.fi}
-}
 \seealso{
 \code{\link{bitseq_rnaSeqData}}
 }
+\author{
+Hande Topa, \email{hande.topa@helsinki.fi}
+}
 \keyword{GP}
-

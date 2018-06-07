@@ -64,4 +64,3 @@ Hande Topa, \email{hande.topa@helsinki.fi}
 \keyword{Bayes}
 \keyword{factor}
 \keyword{model,}
-

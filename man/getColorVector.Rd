@@ -27,4 +27,3 @@ color_vector=getColorVector()
 Hande Topa, \email{hande.topa@helsinki.fi}
 }
 \keyword{color}
-

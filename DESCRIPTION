@@ -25,7 +25,5 @@ Description: Implements a Gaussian process (GP)-based ranking method
 License: MIT + file LICENSE
 URL: https://github.com/PROBIC/GPrank
 BugReports: https://github.com/PROBIC/GPrank/issues
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 NeedsCompilation: no
-
-

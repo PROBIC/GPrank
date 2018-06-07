@@ -21,11 +21,6 @@ License: \tab MIT\cr
 }
 Details regarding the usage of the package can be found in the vignette.
 }
-\author{
-Hande Topa, Antti Honkela
-
-Maintainer: Hande Topa \email{hande.topa@helsinki.fi}
-}
 \references{
 Hande Topa, Agnes Jonas, Robert Kofler, Carolin Kosiol, Antti Honkela.
 Gaussian process test for high-throughput sequencing time series: application to experimental evolution.
@@ -35,5 +30,9 @@ Hande Topa, Antti Honkela.
 Analysis of differential splicing suggests different modes of short-term splicing regulation.
 \emph{Bioinformatics} 32(12):i147-i155, \bold{2016}.
 }
-\keyword{package}
+\author{
+Hande Topa, Antti Honkela
 
+Maintainer: Hande Topa \email{hande.topa@helsinki.fi}
+}
+\keyword{package}

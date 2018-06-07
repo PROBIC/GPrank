@@ -42,7 +42,7 @@ function (model,grid_size=5) {
 		iw_bounds=model$kern$comp[[iw_ind]]$options$inverseWidthBounds
 
 		l_bound=sqrt(1/iw_bounds[2])
-		l_lims=seq(l_bound,tail(model$X,1),length=grid_size)
+		l_lims=seq(l_bound,c(tail(model$X,1)),length=grid_size)
 		l_lims[1]=head(l_lims,1)+1e-14
 		l_lims[length(l_lims)]=tail(l_lims,1)-1e-14
 		iw_lims=1/(l_lims^2)
@@ -51,7 +51,7 @@ function (model,grid_size=5) {
 
 	var_ind=which(paramNames=="variance")
 	for (i in 1:length(var_ind)) {
-		paramLims[[var_ind[i]]]=seq(-10,log(var(model$y)),length=grid_size) # Corresponding variance range is (exp(-10),var(y))
+		paramLims[[var_ind[i]]]=seq(-10,c(log(var(model$y))),length=grid_size) # Corresponding variance range is (exp(-10),var(y))
 	}
 
 	gridPoints=expand.grid(paramLims)

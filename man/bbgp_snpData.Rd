@@ -39,4 +39,3 @@ Hande Topa, \email{hande.topa@helsinki.fi}
 }
 \keyword{bbgp}
 \keyword{snpData}
-

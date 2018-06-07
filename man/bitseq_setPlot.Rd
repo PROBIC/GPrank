@@ -28,4 +28,3 @@ Hande Topa, \email{hande.topa@helsinki.fi}
 }
 \keyword{internal}
 \keyword{plot}
-
