@@ -445,7 +445,7 @@ Once we have fitted the GP model, we can visualize it using \Rfunction{plotGP} f
 <<eval=FALSE, echo=TRUE>>=
 model=snp_gpTest$model
 ylims=c(0,1)
-plotGP(model, ylimits=ylims)
+plotGP(model, ylimits=ylims, jitterx=TRUE)
 title(xlab="Time", ylab="SNP frequency")
 @
 \begin{figure}[h]
@@ -453,7 +453,7 @@ title(xlab="Time", ylab="SNP frequency")
 <<eval=TRUE, fig=TRUE, echo=FALSE>>=
 model=snp_gpTest$model
 ylims=c(0,1)
-plotGP(model, ylimits=ylims)
+plotGP(model, ylimits=ylims, jitterx=TRUE)
 title(xlab="Time", ylab="Frequency")
 @
 \end{center}

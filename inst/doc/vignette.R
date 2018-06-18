@@ -235,7 +235,7 @@ snp_gpTest=apply_gpTest(t,y,v)
 ###################################################
 ## model=snp_gpTest$model
 ## ylims=c(0,1)
-## plotGP(model, ylimits=ylims)
+## plotGP(model, ylimits=ylims, jitterx=TRUE)
 ## title(xlab="Time", ylab="SNP frequency")
 
 
@@ -244,7 +244,7 @@ snp_gpTest=apply_gpTest(t,y,v)
 ###################################################
 model=snp_gpTest$model
 ylims=c(0,1)
-plotGP(model, ylimits=ylims)
+plotGP(model, ylimits=ylims, jitterx=TRUE)
 title(xlab="Time", ylab="Frequency")
 
 

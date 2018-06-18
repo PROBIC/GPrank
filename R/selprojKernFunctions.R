@@ -11,7 +11,7 @@ selprojKernParamInit <- function (kern) {
 
   for (i in seq_along(kern$comp))
     if (kern$comp[[i]]$type == "multi")
-      error("selproj kernel does not support wrapping a multi kernel.")
+      stop("selproj kernel does not support wrapping a multi kernel.")
 
   stopifnot(!is.null(kern$options$expmask))
   
@@ -27,7 +27,7 @@ selprojKernParamInit <- function (kern) {
 
 .selprojDataMaskCompare <- function (m, m1) {
   m1 <- as.matrix(m1)
-  I <- vector(len=dim(m1)[1])
+  I <- vector(length=dim(m1)[1])
   I[] <- TRUE
 
   for (i in seq_along(m)) {

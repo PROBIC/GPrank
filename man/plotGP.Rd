@@ -5,7 +5,7 @@
 \title{Plotting fitted GP models}
 \usage{
 plotGP(model, col_item = "gray", ylimits = NULL, write_xticks = TRUE,
-  write_yticks = TRUE)
+  write_yticks = TRUE, jitterx = FALSE)
 }
 \arguments{
 \item{model}{GP model to be plotted.}
@@ -17,6 +17,8 @@ plotGP(model, col_item = "gray", ylimits = NULL, write_xticks = TRUE,
 \item{write_xticks}{Boolean: whether to write x ticks and labels or not}
 
 \item{write_yticks}{Boolean: whether to write y ticks and labels or not}
+
+\item{jitterx}{Boolean: whether to jitter duplicated x values or not}
 }
 \value{
 Creates the plot of the fitted GP model.

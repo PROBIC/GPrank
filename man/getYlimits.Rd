@@ -4,12 +4,16 @@
 \alias{getYlimits}
 \title{Setting limits for the y-axis}
 \usage{
-getYlimits(Y, V, minRng = 0.5)
+getYlimits(Y, V, predY = NULL, predV = NULL, minRng = 0.5)
 }
 \arguments{
 \item{Y}{Matrix containing observed values; items in rows, time points in columns.}
 
 \item{V}{Matrix containing variances; items in rows, time points in columns.}
+
+\item{predY}{Matrix containing predicted values; items in rows, time points in columns.}
+
+\item{predV}{Matrix containing variances of the predicted values; items in rows, time points in columns.}
 
 \item{minRng}{Minimum range for the y axis in the plot. Default value is set to 0.5.}
 }
@@ -22,7 +26,9 @@ Function for setting decent y-axis limits.
 \examples{
 Y=matrix(c(1,2,3,4,5,6),2,3)
 V=0.1*Y
-y_lims=getYlimits(Y,V)
+predY=matrix(c(1,2,3,4,5,6),2,3)
+predV=0.1*predY
+y_lims=getYlimits(Y,V,predY,predV)
 
 }
 \author{

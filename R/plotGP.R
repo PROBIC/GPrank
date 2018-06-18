@@ -8,6 +8,7 @@
 #' @param ylimits Numeric vector which contains minimum and maximum limits for the y axis.
 #' @param write_xticks Boolean: whether to write x ticks and labels or not
 #' @param write_yticks Boolean: whether to write y ticks and labels or not
+#' @param jitterx Boolean: whether to jitter duplicated x values or not
 #'
 #' @export
 #' @return Creates the plot of the fitted GP model.
@@ -30,7 +31,7 @@
 #' 
 
 plotGP <-
-function(model,col_item='gray',ylimits=NULL, write_xticks=TRUE, write_yticks=TRUE) {
+function(model,col_item='gray',ylimits=NULL, write_xticks=TRUE, write_yticks=TRUE, jitterx=FALSE) {
 	
 	x=model$X
 	y=model$y
@@ -58,7 +59,7 @@ function(model,col_item='gray',ylimits=NULL, write_xticks=TRUE, write_yticks=TRU
 	}
 
 	if (is.null(ylimits)) {
-		ylimits=getYlimits(y,v)	
+		ylimits=getYlimits(y,v,ypredMean,ypredVar)	
 	}
 
         if (write_xticks) {
@@ -81,17 +82,13 @@ function(model,col_item='gray',ylimits=NULL, write_xticks=TRUE, write_yticks=TRU
 	lines(xtest,ypredMean,lty=1,col='black')	
 
 	x_jittered=x
-	x_jittered[which(duplicated(x)==TRUE)]=jitter(x[which(duplicated(x)==TRUE)])
-	points(x_jittered,y,col='black',pch=20)
-
-	no_of_kernels=length(model$kern$comp)
-	kernTypes=list()
-	for (i in 1:no_of_kernels) {
-		kernTypes=append(kernTypes,model$kern$comp[[i]]$type)
+	if (jitterx==TRUE) {
+	  x_jittered[which(duplicated(x)==TRUE)]=jitter(x[which(duplicated(x)==TRUE)])
 	}
-
+	points(x_jittered,y,col='black',pch=20)
+	
 	if (any(v>0)) {
-		arrows(as.vector(x_jittered), as.vector(y-2*sqrt(v)), as.vector(x_jittered), as.vector(y+2*sqrt(v)), length=0.05, angle=90, code=3, lwd=2, 			col=getDarkerColor(col_item))
+		arrows(as.vector(x_jittered), as.vector(y-2*sqrt(v)), as.vector(x_jittered), as.vector(y+2*sqrt(v)), length=0.05, angle=90, code=3, lwd=2, col=getDarkerColor(col_item))
 	} 
 
 }
@@ -117,9 +114,46 @@ function(color, factor=0.6) {
 
 }
 
+
+#' @title Plotting fitted GP models for two-sample model
+#'
+#' @description
+#' Function for plotting fitted GP models within its confidence region of 2 standard deviations
+#' for the two-sample model.
+#' 
+#' @param model GP model to be plotted.
+#' @param index sample index of the model to be plotted from the two-sample model.
+#' @param col_item RGB color code which will be used for the color of the GP plot.
+#' @param ylimits Numeric vector which contains minimum and maximum limits for the y axis.
+#' @param write_xticks Boolean: whether to write x ticks and labels or not
+#' @param write_yticks Boolean: whether to write y ticks and labels or not
+#' @param jitterx Boolean: whether to jitter duplicated x values or not
+#'
 #' @export
+#' @return Creates the plot of the fitted GP model.
+#'
+#' @examples
+#' x=list(as.matrix(seq(1,10)), as.matrix(seq(1,10)))
+#' y=list(as.matrix(sin(x[[1]])), as.matrix(cos(x[[2]])))
+#' v=list(as.matrix(runif(10,0,0.2)), as.matrix(runif(10,0,0.2)))
+#' kernelTypes=c("rbf","white","fixedvariance")
+#' model=constructTwoSampleModel(x,y,v,kernelTypes)
+#' col_item=getColorVector()[1]
+#' index=1
+#' ylimits=c(min(y[[index]])-0.1,max(y[[index]])+0.1)
+#' 
+#' plotTwoSampleGP(model,index,col_item,ylimits)
+#'
+#' @importFrom graphics arrows
+#' @importFrom grDevices col2rgb rgb
+#'
+#' @keywords plot twoSample
+#' @author Hande Topa, \email{hande.topa@@helsinki.fi}; Antti Honkela, \email{antti.honkela@@helsinki.fi}
+#' 
+#' 
+
 plotTwoSampleGP <-
-function(model,index,col_item='gray',ylimits=NULL, write_xticks=TRUE, write_yticks=TRUE) {
+function(model,index,col_item='gray',ylimits=NULL, write_xticks=TRUE, write_yticks=TRUE, jitterx=FALSE) {
 	
 	x_all=model$X
         y_all=model$y
@@ -142,17 +176,17 @@ function(model,index,col_item='gray',ylimits=NULL, write_xticks=TRUE, write_ytic
 	no_of_kernels=length(model$kern$comp)
 	kernTypes=list()
 	for (i in 1:no_of_kernels) {
-		kernTypes=append(kernTypes,model$kern$comp[[i]]$type)
+	  kernTypes=append(kernTypes,model$kern$comp[[i]]$type)
 	}
 	if ("fixedvariance" %in% kernTypes) {
-		ind_fixedvar_kern=which(kernTypes=="fixedvariance")
-		v=model$kern$comp[[ind_fixedvar_kern]]$fixedvariance
+	  ind_fixedvar_kern=which(kernTypes=="fixedvariance")
+	  v=model$kern$comp[[ind_fixedvar_kern]]$fixedvariance[I]
 	} else {
-		v=matrix(0,length(x),1)
+	  v=matrix(0,length(x[,2]),1)
 	}
 
 	if (is.null(ylimits)) {
-		ylimits=getYlimits(y,v)	
+		ylimits=getYlimits(y,v,ypredMean,ypredVar)	
 	}
 
         if (write_xticks) {
@@ -174,18 +208,14 @@ function(model,index,col_item='gray',ylimits=NULL, write_xticks=TRUE, write_ytic
 	lines(xtest,upper,lty=2,col='black')
 	lines(xtest,ypredMean,lty=1,col='black')	
 
-	x_jittered=x
-	x_jittered[which(duplicated(x)==TRUE)]=jitter(x[which(duplicated(x)==TRUE)])
+	x_jittered=as.matrix(x[,2])
+	if (jitterx==TRUE) {
+	  x_jittered[which(duplicated(x)==TRUE)]=jitter(x[which(duplicated(x)==TRUE)])
+	}
 	points(x_jittered,y,col='black',pch=20)
 
-	no_of_kernels=length(model$kern$comp)
-	kernTypes=list()
-	for (i in 1:no_of_kernels) {
-		kernTypes=append(kernTypes,model$kern$comp[[i]]$type)
-	}
-
 	if (any(v>0)) {
-		arrows(as.vector(x_jittered), as.vector(y-2*sqrt(v)), as.vector(x_jittered), as.vector(y+2*sqrt(v)), length=0.05, angle=90, code=3, lwd=2, 			col=getDarkerColor(col_item))
+		arrows(as.vector(x_jittered), as.vector(y-2*sqrt(v)), as.vector(x_jittered), as.vector(y+2*sqrt(v)), length=0.05, angle=90, code=3, lwd=2, col=getDarkerColor(col_item))
 	} 
 
 }

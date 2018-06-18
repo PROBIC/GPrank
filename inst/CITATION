@@ -1,6 +1,6 @@
 citEntry(entry="Article",
   header="The underlying methodology papers can be cited as:",
-  author =       "Hande Topa and \'{A}gnes J\'{o}n\'{a}s and Robert Kofler and Carolin Kosiol and Antti Honkela",
+  author =       "Hande Topa and \u00C1gnes J\u00F3n\u00E1s and Robert Kofler and Carolin Kosiol and Antti Honkela",
   title =        "Gaussian process test for high-throughput sequencing time series: application to experimental evolution",
   journal =      "Bioinformatics",
   year =         "2015",

@@ -118,8 +118,8 @@ function(item, GPfits, gpData, multi=0, ylimits=NULL, x_ticks=NULL, x_label=NULL
           axis(side = 1, at = c(x), labels=x_ticks)
         }
 	title(xlab=x_label, ylab=y_label)
-	legend("top", inset=c(0,-0.13), legend=item[indices_for_legend], col=head(colScale,l)[indices_for_legend], lwd=3, xpd=TRUE, horiz = TRUE, bty = "n")	# item names
-	legend("top", inset=c(0,-0.08), legend=paste("logBF: ",c(format(logBF[indices_for_legend],digits=3,nsmall=3))), col=head(colScale,l)[indices_for_legend], lwd=3, xpd=TRUE, horiz = TRUE, bty = "n")	# log Bayes factors
+	legend("top", inset=c(0,-0.15), legend=item[indices_for_legend], col=head(colScale,l)[indices_for_legend], lwd=3, xpd=TRUE, horiz = TRUE, bty = "n")	# item names
+	legend("top", inset=c(0,-0.1), legend=paste("logBF: ",c(format(logBF[indices_for_legend],digits=3,nsmall=3))), col=head(colScale,l)[indices_for_legend], lwd=3, xpd=TRUE, horiz = TRUE, bty = "n")	# log Bayes factors
 	box()
 	if (!missing(plotName) | !is.null(plotName)) {
 		dev.off()
